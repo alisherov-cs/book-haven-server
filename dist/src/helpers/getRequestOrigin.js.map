@@ -1,0 +1,1 @@
+{"version":3,"file":"getRequestOrigin.js","sourceRoot":"","sources":["../../../src/helpers/getRequestOrigin.ts"],"names":[],"mappings":";;AAEA,4CAEC;AAFD,SAAgB,gBAAgB,CAAC,GAAY;IAC3C,OAAO,GAAG,GAAG,CAAC,QAAQ,MAAM,GAAG,CAAC,GAAG,CAAC,MAAM,CAAC,EAAE,CAAC;AAChD,CAAC"}

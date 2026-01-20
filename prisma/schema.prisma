@@ -1,0 +1,140 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+enum Role {
+    admin
+    user
+}
+
+model User {
+    id String @id @default(uuid())
+    username String @unique
+    password String
+    avatar String?
+    friends Friend[] @relation("UserFriends")
+    friended Friend[] @relation("UserFriended")
+    reviews Review[]
+    cart Cart[]
+    wishlist Wishlist[]
+    sets Set[]
+    role Role @default(user)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Cart {
+    id String @id @default(uuid())
+    qnt Int @default(1)
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId String
+    book Book @relation(fields: [bookId], references: [id], onDelete: Cascade)
+    bookId String
+    @@unique([userId, bookId])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Wishlist {
+    id String @id @default(uuid())
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId String
+    book Book @relation(fields: [bookId], references: [id], onDelete: Cascade)
+    bookId String
+    @@unique([userId, bookId])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Set {
+    id String @id @default(uuid())
+    title String
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId String
+    books Book[]
+    @@unique([userId, title])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Friend {
+    id String @id @default(uuid())
+    user User @relation("UserFriends", fields: [userId], references: [id])
+    userId String
+    friend User @relation("UserFriended", fields: [friendId], references: [id])
+    friendId String
+    @@unique([userId, friendId])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Ganer {
+    id String @id @default(uuid())
+    name String @unique
+    slug String
+    books Book[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Author {
+    id String @id @default(uuid())
+    name String
+    books Book[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Review {
+    id String @id @default(uuid())
+    title String
+    description String
+    rating Int @default(0)
+    author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    authorId String
+    book Book @relation(fields: [bookId], references: [id], onDelete: Cascade)
+    bookId String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Book {
+    id String @id @default(uuid())
+    image String
+    name String
+    description String
+    rating Int @default(5)
+    price Decimal
+    discount Int?
+    ganer Ganer @relation(fields: [ganerId], references: [id], onDelete: Cascade)
+    ganerId String
+    author Author @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    authorId String
+    reviews Review[]
+    cart Cart[]
+    wishlist Wishlist[]
+    sets Set[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}

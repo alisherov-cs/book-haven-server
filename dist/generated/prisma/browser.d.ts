@@ -1,0 +1,13 @@
+import * as Prisma from './internal/prismaNamespaceBrowser';
+export { Prisma };
+export * as $Enums from './enums';
+export * from './enums';
+export type User = Prisma.UserModel;
+export type Cart = Prisma.CartModel;
+export type Wishlist = Prisma.WishlistModel;
+export type Set = Prisma.SetModel;
+export type Friend = Prisma.FriendModel;
+export type Ganer = Prisma.GanerModel;
+export type Author = Prisma.AuthorModel;
+export type Review = Prisma.ReviewModel;
+export type Book = Prisma.BookModel;
