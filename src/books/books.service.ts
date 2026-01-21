@@ -28,11 +28,7 @@ export class BooksService {
     const where: BookWhereInput = {};
 
     if (search) {
-      where.OR = [
-        { name: { contains: search, mode: 'insensitive' } },
-        { ganer: { name: { contains: search, mode: 'insensitive' } } },
-        { author: { name: { contains: search, mode: 'insensitive' } } },
-      ];
+      where.name = { contains: search, mode: 'insensitive' };
     }
 
     if (authors?.length) {
