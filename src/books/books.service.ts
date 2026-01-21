@@ -47,7 +47,9 @@ export class BooksService {
       where.rating = { in: ratings.map((r) => Number(r)) };
     }
 
-    where.price = { gte: priceFrom, lte: priceTo };
+    if (priceFrom && priceTo) {
+      where.price = { gte: priceFrom, lte: priceTo };
+    }
 
     const whereClues: { where: BookWhereInput } = {
       where,
