@@ -10,10 +10,10 @@ export declare class UsersService {
     constructor(prisma: PrismaService);
     findAll({ page, limit }: PaginationDto): Promise<{
         data: {
-            id: string;
             username: string;
-            avatar: string | null;
             role: import("../../generated/prisma/enums").Role;
+            id: string;
+            avatar: string | null;
             createdAt: Date;
             updatedAt: Date;
         }[];
@@ -179,11 +179,11 @@ export declare class UsersService {
         title: string;
     }>;
     editProfile(user: UserPayloadDto, editData: ProfileEditDto): Promise<{
-        id: string;
         username: string;
         password: string;
-        avatar: string | null;
         role: import("../../generated/prisma/enums").Role;
+        id: string;
+        avatar: string | null;
         createdAt: Date;
         updatedAt: Date;
     }>;
