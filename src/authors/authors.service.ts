@@ -3,7 +3,6 @@ import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
 import { PrismaService } from 'src/services/prisma/prisma.service';
 import { PaginationDto } from 'src/dto/pagination.dto';
-import { unref } from 'process';
 
 @Injectable()
 export class AuthorsService {

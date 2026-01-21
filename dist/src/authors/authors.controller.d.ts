@@ -6,9 +6,9 @@ export declare class AuthorsController {
     constructor(authorsService: AuthorsService);
     create(createAuthorDto: CreateAuthorDto): Promise<{
         id: string;
+        name: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
     }>;
     findAll(page?: number, limit?: number): Promise<{
         data: any[];
@@ -34,30 +34,30 @@ export declare class AuthorsController {
     }>;
     findOne(id: string): Promise<{
         id: string;
+        name: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
     }>;
     findAuthorBooks(id: string, page?: number, limit?: number): Promise<{
         data: ({
-            ganer: {
-                id: string;
-                createdAt: Date;
-                updatedAt: Date;
-                name: string;
-                slug: string;
-            };
             author: {
                 id: string;
+                name: string;
                 createdAt: Date;
                 updatedAt: Date;
+            };
+            ganer: {
+                id: string;
                 name: string;
+                createdAt: Date;
+                updatedAt: Date;
+                slug: string;
             };
         } & {
             id: string;
+            name: string;
             createdAt: Date;
             updatedAt: Date;
-            name: string;
             image: string;
             description: string;
             rating: number;
@@ -75,14 +75,14 @@ export declare class AuthorsController {
     }>;
     update(id: string, updateAuthorDto: UpdateAuthorDto): Promise<{
         id: string;
+        name: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
     }>;
     delete(id: string): Promise<{
         id: string;
+        name: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
     }>;
 }

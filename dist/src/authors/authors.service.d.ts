@@ -7,9 +7,9 @@ export declare class AuthorsService {
     constructor(prisma: PrismaService);
     create(createAuthorDto: CreateAuthorDto): Promise<{
         id: string;
+        name: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
     }>;
     findAll({ page, limit }: PaginationDto, defaultId?: string): Promise<{
         data: any[];
@@ -35,42 +35,42 @@ export declare class AuthorsService {
     }>;
     findOne(id: string): Promise<{
         id: string;
+        name: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
     }>;
     update(id: string, updateAuthorDto: UpdateAuthorDto): Promise<{
         id: string;
+        name: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
     }>;
     delete(id: string): Promise<{
         id: string;
+        name: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
     }>;
     findAuthorBooks(id: string, { page, limit }: PaginationDto): Promise<{
         data: ({
-            ganer: {
-                id: string;
-                createdAt: Date;
-                updatedAt: Date;
-                name: string;
-                slug: string;
-            };
             author: {
                 id: string;
+                name: string;
                 createdAt: Date;
                 updatedAt: Date;
+            };
+            ganer: {
+                id: string;
                 name: string;
+                createdAt: Date;
+                updatedAt: Date;
+                slug: string;
             };
         } & {
             id: string;
+            name: string;
             createdAt: Date;
             updatedAt: Date;
-            name: string;
             image: string;
             description: string;
             rating: number;
